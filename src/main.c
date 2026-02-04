@@ -30,6 +30,9 @@ static void execute_cmd(char *cmd) {
     // Skip leading spaces
     while (*cmd == ' ') cmd++;
 
+    // Empty command
+    if (*cmd == '\0') return;
+
     // Find end of command name
     char *args = cmd;
     while (*args && *args != ' ') args++;
@@ -41,12 +44,12 @@ static void execute_cmd(char *cmd) {
 
     if (str_cmp(cmd, "help") == 0) {
         cmd_help();
-    } else if (str_cmp(cmd, "clear")) {
+    } else if (str_cmp(cmd, "clear") == 0) {
         cmd_clear();
-    } else if (str_cmp(cmd, "echo")) {
+    } else if (str_cmp(cmd, "echo") == 0) {
         cmd_echo(args);
     } else if (*cmd !='\n') {
-        uart_puts((uint8_t *)"Unknown command:");
+        uart_puts((uint8_t *)"Unknown command: ");
         uart_puts((uint8_t *)cmd);
         uart_puts((uint8_t *)"\r\n");
     }

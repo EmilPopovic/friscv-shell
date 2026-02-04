@@ -2,8 +2,9 @@
 
 void cmd_help() {
     uart_puts((uint8_t *)"Commands:\r\n");
-    uart_puts((uint8_t *)"  help  - Show this help\r\n");
-    uart_puts((uint8_t *)"  clear - Clear screen\r\n");
+    uart_puts((uint8_t *)"  help        - Show this help\r\n");
+    uart_puts((uint8_t *)"  clear       - Clear screen\r\n");
+    uart_puts((uint8_t *)"  echo <text> - Echo input\r\n");
 }
 
 void cmd_clear() {
