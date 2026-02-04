@@ -1,4 +1,5 @@
 #include "uart.h"
+#include "commands.h"
 #include <stdint.h>
 
 #define MAX_CMD_LEN 128
@@ -23,22 +24,6 @@ static int str_cmp(const char *s1, const char *s2) {
         s2++;
     }
     return *(uint8_t *)s1 - *(uint8_t *)s2;
-}
-
-static void cmd_help() {
-    uart_puts((uint8_t *)"Commands:\r\n");
-    uart_puts((uint8_t *)"  help  - Show this help\r\n");
-    uart_puts((uint8_t *)"  clear - Clear screen\r\n");
-}
-
-static void cmd_clear() {
-    uart_puts((uint8_t *)"\033[2J");
-    uart_puts((uint8_t *)"\033[H");
-}
-
-static void cmd_echo(char *args) {
-    uart_puts((uint8_t *)args);
-    uart_puts((uint8_t *)"\r\n");
 }
 
 static void execute_cmd(char *cmd) {

@@ -4,7 +4,7 @@ include $(FRISCV_SDK)/friscv.mk
 BUILD_DIR := build
 TARGET := $(BUILD_DIR)/prog
 
-APP_SRCS := src/main.c
+APP_SRCS := src/main.c src/commands.c
 ALL_SRCS := $(FRISCV_CRT0) $(APP_SRCS) $(FRISCV_SRCS)
 
 .PHONY: all clean compile_commands.json
