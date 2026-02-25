@@ -1,4 +1,4 @@
-# friscv-shell
+# FRISC-V Shell
 
 A minimal UART shell for the FRISC-V platform. Accepts commands over UART, echoes input, and dispatches to built-in command handlers.
 
@@ -12,7 +12,7 @@ A minimal UART shell for the FRISC-V platform. Accepts commands over UART, echoe
 Clone with `--recursive` to pull the SDK submodule:
 
 ```sh
-git clone --recursive https://github.com/EmilPopovic/friscv-shell
+git clone --recursive https://github.com/friscv/friscv-shell
 ```
 
 If you already cloned without `--recursive`:
