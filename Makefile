@@ -2,16 +2,13 @@ FRISCV_SDK := sdk
 include $(FRISCV_SDK)/friscv.mk
 
 BUILD_DIR := build
-TARGET := $(BUILD_DIR)/prog
+ELF := $(BUILD_DIR)/prog.elf
+BIN := $(BUILD_DIR)/prog.bin
 
 APP_SRCS := src/main.c src/commands.c
 ALL_SRCS := $(FRISCV_CRT0) $(APP_SRCS) $(FRISCV_SRCS)
 
 .PHONY: all clean compile_commands.json
-
-ifeq ($(PLATFORM),friscv)
-ELF := $(TARGET).elf
-BIN := $(TARGET).bin
 
 all: $(BIN)
 
@@ -23,16 +20,6 @@ $(ELF): $(ALL_SRCS) | $(BUILD_DIR)
 
 $(BIN): $(ELF)
 	$(OBJCOPY) -O binary $< $@
-
-else
-all: $(TARGET)
-
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-
-$(TARGET): $(APP_SRCS) $(FRISCV_SRCS) | $(BUILD_DIR)
-	$(CC) $(FRISCV_CFLAGS) $(FRISCV_LDFLAGS) -o $# $(APP_SRCS) $(FRISCV_SRCS)
-endif
 
 clean:
 	rm -rf $(BUILD_DIR)
